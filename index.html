@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>FF Tournament Hub | Free Fire Tournament</title>
 
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap');
 
         * {
@@ -19,7 +21,6 @@
             --bg: #050509;
             --card: #101017;
             --red: #ff2638;
-            --orange: #ff7a00;
             --white: #ffffff;
             --gray: #9999a6;
             --border: rgba(255,255,255,0.09);
@@ -41,27 +42,45 @@
             position: fixed;
             inset: 0;
             z-index: -3;
+
             background:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
             background-size: 45px 45px;
         }
 
         body::after {
             content: "";
+
             position: fixed;
+
             width: 500px;
             height: 500px;
+
             right: -180px;
             top: 100px;
-            background: rgba(255, 38, 56, 0.12);
+
+            background: rgba(255,38,56,0.12);
+
             filter: blur(120px);
+
             border-radius: 50%;
+
             z-index: -2;
+
             animation: glow 7s infinite alternate ease-in-out;
         }
 
         @keyframes glow {
+
             from {
                 transform: translateY(0);
             }
@@ -69,500 +88,829 @@
             to {
                 transform: translateY(180px);
             }
+
         }
 
-        /* NAVBAR */
+
+        /* ================= NAVBAR ================= */
 
         header {
+
             height: 80px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             padding: 0 7%;
+
             position: sticky;
+
             top: 0;
+
             z-index: 999;
+
             background: rgba(5,5,9,0.78);
+
             backdrop-filter: blur(18px);
+
             border-bottom: 1px solid var(--border);
+
         }
 
         .logo {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 21px;
+
             font-weight: 900;
+
             letter-spacing: 1px;
+
         }
 
         .logo span {
+
             color: var(--red);
+
             text-shadow:
                 0 0 10px var(--red),
                 0 0 30px rgba(255,38,56,0.5);
+
         }
 
         nav {
+
             display: flex;
+
             gap: 30px;
+
         }
 
         nav a {
+
             color: #aaaab5;
+
             text-decoration: none;
+
             font-size: 13px;
+
             font-weight: 600;
+
             transition: 0.3s;
+
             position: relative;
+
         }
 
         nav a:hover {
+
             color: white;
+
         }
 
         nav a::after {
+
             content: "";
+
             position: absolute;
+
             width: 0;
+
             height: 2px;
+
             left: 0;
+
             bottom: -8px;
+
             background: var(--red);
+
             transition: 0.3s;
+
         }
 
         nav a:hover::after {
+
             width: 100%;
+
         }
 
         .menu {
+
             display: none;
+
             color: white;
+
             background: none;
+
             border: none;
+
             font-size: 25px;
+
             cursor: pointer;
+
         }
 
-        /* HERO */
+
+        /* ================= HERO ================= */
 
         .hero {
+
             min-height: calc(100vh - 80px);
+
             padding: 80px 7%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 60px;
+
         }
 
         .hero-left {
+
             max-width: 680px;
+
             animation: slideLeft 1s ease;
+
         }
 
         @keyframes slideLeft {
+
             from {
+
                 opacity: 0;
+
                 transform: translateX(-50px);
+
             }
 
             to {
+
                 opacity: 1;
+
                 transform: translateX(0);
+
             }
+
         }
 
         .badge {
+
             display: inline-block;
+
             padding: 8px 15px;
+
             color: #ff7883;
+
             background: rgba(255,38,56,0.08);
+
             border: 1px solid rgba(255,38,56,0.3);
+
             border-radius: 5px;
+
             font-size: 11px;
+
             font-weight: 700;
+
             letter-spacing: 2px;
+
             margin-bottom: 25px;
+
         }
 
         h1 {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: clamp(48px, 7vw, 95px);
+
             line-height: 0.95;
+
             font-weight: 900;
+
             letter-spacing: -4px;
+
         }
 
         h1 span {
+
             color: var(--red);
+
             text-shadow:
                 0 0 10px var(--red),
                 0 0 40px rgba(255,38,56,0.5);
+
             animation: textPulse 2s infinite alternate;
+
         }
 
         @keyframes textPulse {
+
             from {
-                text-shadow: 0 0 10px var(--red);
+
+                text-shadow:
+                    0 0 10px var(--red);
+
             }
 
             to {
+
                 text-shadow:
                     0 0 15px var(--red),
                     0 0 45px rgba(255,38,56,0.6);
+
             }
+
         }
 
         .hero-text {
+
             color: var(--gray);
+
             max-width: 570px;
+
             line-height: 1.8;
+
             font-size: 15px;
+
             margin-top: 25px;
+
         }
 
-        /* BUTTONS */
+
+        /* ================= BUTTONS ================= */
 
         .buttons {
+
             display: flex;
+
             gap: 15px;
+
             margin-top: 35px;
+
         }
 
         .btn {
+
             padding: 14px 23px;
+
             text-decoration: none;
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 11px;
+
             font-weight: 800;
-            letter-spacing: 0.5px;
+
             transition: 0.3s;
+
             border-radius: 3px;
+
         }
 
         .btn-primary {
+
             color: white;
+
             background: var(--red);
-            box-shadow: 0 0 25px rgba(255,38,56,0.3);
+
+            box-shadow:
+                0 0 25px rgba(255,38,56,0.3);
+
         }
 
         .btn-primary:hover {
+
             transform: translateY(-4px);
-            box-shadow: 0 0 35px rgba(255,38,56,0.55);
+
+            box-shadow:
+                0 0 35px rgba(255,38,56,0.55);
+
         }
 
         .btn-secondary {
+
             color: white;
+
             border: 1px solid var(--border);
+
             background: rgba(255,255,255,0.03);
+
         }
 
         .btn-secondary:hover {
+
             transform: translateY(-4px);
+
             border-color: var(--red);
+
         }
 
-        /* TOURNAMENT CARD */
+
+        /* ================= TOURNAMENT ================= */
 
         .tournament {
+
             width: 390px;
+
             padding: 30px;
+
             background:
                 linear-gradient(
                     145deg,
                     rgba(255,255,255,0.08),
                     rgba(255,255,255,0.015)
                 );
+
             border: 1px solid var(--border);
+
             box-shadow:
                 0 30px 80px rgba(0,0,0,0.5),
                 0 0 40px rgba(255,38,56,0.05);
+
             animation: floating 5s infinite ease-in-out;
+
         }
 
         @keyframes floating {
+
             0%,100% {
+
                 transform: translateY(0);
+
             }
 
             50% {
+
                 transform: translateY(-12px);
+
             }
+
         }
 
         .tournament-top {
+
             display: flex;
+
             justify-content: space-between;
+
             color: #777;
+
             font-size: 10px;
+
             margin-bottom: 20px;
+
         }
 
         .open {
+
             color: #ff4d5d;
+
         }
 
         .tournament h2 {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 28px;
+
             line-height: 1.2;
+
             margin-bottom: 25px;
+
         }
 
         .info {
+
             display: grid;
+
             grid-template-columns: repeat(3,1fr);
+
             gap: 10px;
+
             padding: 18px 0;
+
             border-top: 1px solid var(--border);
+
             border-bottom: 1px solid var(--border);
+
         }
 
         .info small {
+
             display: block;
+
             color: #777;
+
             font-size: 8px;
+
             margin-bottom: 5px;
+
         }
 
         .info strong {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 15px;
+
         }
 
-        /* COUNTDOWN */
+
+        /* ================= COUNTDOWN ================= */
 
         .countdown {
+
             display: grid;
+
             grid-template-columns: repeat(4,1fr);
+
             gap: 7px;
+
             margin-top: 25px;
+
         }
 
         .time {
+
             text-align: center;
+
             padding: 12px 4px;
+
             background: rgba(255,255,255,0.035);
+
             border: 1px solid rgba(255,255,255,0.05);
+
         }
 
         .time strong {
+
             display: block;
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 18px;
+
         }
 
         .time small {
+
             color: #777;
+
             font-size: 8px;
+
         }
 
-        /* FEATURES */
+
+        /* ================= SECTIONS ================= */
 
         section {
+
             padding: 100px 7%;
+
         }
 
         .section-heading {
+
             text-align: center;
+
             margin-bottom: 50px;
+
         }
 
         .section-heading small {
+
             color: var(--red);
+
             font-family: 'Orbitron', sans-serif;
+
             letter-spacing: 3px;
+
         }
 
         .section-heading h2 {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: clamp(30px,4vw,50px);
+
             margin-top: 10px;
+
         }
 
         .section-heading span {
+
             color: var(--red);
+
         }
 
+
+        /* ================= CARDS ================= */
+
         .cards {
+
             display: grid;
+
             grid-template-columns: repeat(4,1fr);
+
             gap: 18px;
+
         }
 
         .card {
+
             padding: 30px;
+
             background: rgba(255,255,255,0.025);
+
             border: 1px solid var(--border);
+
             transition: 0.4s;
+
             position: relative;
+
             overflow: hidden;
+
         }
 
         .card:hover {
+
             transform: translateY(-8px);
+
             border-color: rgba(255,38,56,0.35);
+
             background: rgba(255,38,56,0.04);
+
         }
 
         .card-icon {
+
             font-size: 30px;
+
             margin-bottom: 20px;
+
         }
 
         .card h3 {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 14px;
+
             margin-bottom: 10px;
+
         }
 
         .card p {
+
             color: #858590;
+
             font-size: 12px;
+
             line-height: 1.7;
+
         }
 
-        /* LEADERBOARD */
+
+        /* ================= LEADERBOARD ================= */
 
         .leaderboard {
+
             max-width: 1000px;
+
             margin: auto;
+
             border: 1px solid var(--border);
+
             overflow: hidden;
+
             background: rgba(255,255,255,0.02);
+
         }
 
         .leader-row {
+
             display: grid;
-            grid-template-columns: 70px 1fr 100px 100px 100px;
+
+            grid-template-columns:
+                70px 1fr 100px 100px 100px;
+
             padding: 18px 20px;
+
             border-bottom: 1px solid var(--border);
+
             align-items: center;
+
         }
 
         .leader-row:last-child {
+
             border-bottom: none;
+
         }
 
         .leader-row.header {
+
             color: #777;
+
             font-size: 10px;
+
             font-family: 'Orbitron', sans-serif;
+
         }
 
         .leader-row strong {
+
             font-family: 'Orbitron', sans-serif;
+
         }
 
         .rank {
+
             color: var(--red);
+
         }
 
-        /* FOOTER */
+
+        /* ================= FOOTER ================= */
 
         footer {
+
             padding: 35px 7%;
+
             border-top: 1px solid var(--border);
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
         }
 
         footer p {
+
             color: #666;
+
             font-size: 11px;
+
         }
 
-        /* MOBILE */
+
+        /* ================= MOBILE ================= */
 
         @media (max-width: 850px) {
 
             header {
+
                 padding: 0 5%;
+
             }
 
             .menu {
+
                 display: block;
+
             }
 
             nav {
+
                 display: none;
+
                 position: absolute;
+
                 left: 0;
+
                 top: 80px;
+
                 width: 100%;
+
                 padding: 10px 5%;
+
                 flex-direction: column;
+
                 gap: 0;
+
                 background: rgba(5,5,9,0.98);
+
                 border-bottom: 1px solid var(--border);
+
             }
 
             nav.show {
+
                 display: flex;
+
             }
 
             nav a {
+
                 padding: 15px 0;
+
                 border-bottom: 1px solid var(--border);
+
             }
 
             .hero {
+
                 flex-direction: column;
+
                 align-items: stretch;
+
                 padding: 65px 5%;
+
             }
 
             .tournament {
+
                 width: 100%;
+
             }
 
             .cards {
+
                 grid-template-columns: 1fr 1fr;
+
             }
 
             section {
+
                 padding: 75px 5%;
+
             }
+
         }
+
 
         @media (max-width: 520px) {
 
             h1 {
+
                 font-size: 48px;
+
                 letter-spacing: -2px;
+
             }
 
             .buttons {
+
                 flex-direction: column;
+
             }
 
             .btn {
+
                 text-align: center;
+
             }
 
             .cards {
+
                 grid-template-columns: 1fr;
+
             }
 
             .leader-row {
-                grid-template-columns: 40px 1fr 60px;
+
+                grid-template-columns:
+                    40px 1fr 60px;
+
                 font-size: 12px;
+
             }
 
             .leader-row .hide-mobile {
+
                 display: none;
+
             }
 
             footer {
+
                 flex-direction: column;
+
                 gap: 15px;
+
                 text-align: center;
+
             }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ================= NAVBAR ================= -->
 
@@ -573,371 +921,331 @@
     </div>
 
     <nav id="nav">
+
         <a href="#home">Home</a>
+
         <a href="#tournament">Tournament</a>
+
         <a href="#features">Features</a>
+
         <a href="#leaderboard">Leaderboard</a>
+
         <a href="#rules">Rules</a>
+
     </nav>
 
-    <button class="menu" onclick="toggleMenu()" aria-label="Open menu">
+    <button
+        class="menu"
+        onclick="toggleMenu()"
+        aria-label="Open menu">
+
         ☰
+
     </button>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- ================= MAIN ================= -->
 
 <main id="home">
 
-<section class="hero">
 
-    <div class="hero-left">
+    <!-- ================= HERO ================= -->
 
-        <div class="badge">
-            🔥 SEASON 01 • 2026
-        </div>
+    <section class="hero">
 
-        <h1>
-            PLAY.<br>
-            FIGHT.<br>
-            <span>BOOYAH.</span>
-        </h1>
+        <div class="hero-left">
 
-        <p class="hero-text">
-            Welcome to FF Tournament Hub — your destination
-            for competitive Free Fire tournaments, team registration,
-            live scores and exciting prizes.
-        </p>
-
-        <div class="buttons">
-
-            <a href="#register" class="btn btn-primary">
-                REGISTER TEAM
-            </a>
-
-            <a href="#leaderboard" class="btn btn-secondary">
-                LEADERBOARD
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- TOURNAMENT CARD -->
-
-    <div class="tournament" id="tournament">
-
-        <div class="tournament-top">
-            <span>🏆 UPCOMING TOURNAMENT</span>
-            <span class="open">● OPEN</span>
-        </div>
-
-        <h2>
-            FF TOURNAMENT<br>
-            CHAMPIONSHIP
-        </h2>
-
-        <div class="info">
-
-            <div>
-                <small>PRIZE POOL</small>
-                <strong>₹10,000</strong>
+            <div class="badge">
+                🔥 SEASON 01 • 2026
             </div>
 
-            <div>
-                <small>ENTRY</small>
-                <strong>₹50</strong>
-            </div>
+            <h1>
 
-            <div>
-                <small>TEAMS</small>
-                <strong>48</strong>
-            </div>
+                PLAY.<br>
 
-        </div>
+                FIGHT.<br>
 
-        <div class="countdown">
+                <span>BOOYAH.</span>
 
-            <div class="time">
-                <strong id="days">00</strong>
-                <small>DAYS</small>
-            </div>
+            </h1>
 
-            <div class="time">
-                <strong id="hours">00</strong>
-                <small>HOURS</small>
-            </div>
+            <p class="hero-text">
 
-            <div class="time">
-                <strong id="minutes">00</strong>
-                <small>MIN</small>
-            </div>
+                Welcome to FF Tournament Hub — your destination
+                for competitive Free Fire tournaments, team registration,
+                live scores and exciting prizes.
 
-            <div class="time">
-                <strong id="seconds">00</strong>
-                <small>SEC</small>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FEATURES ================= -->
-
-<section id="features">
-
-    <div class="section-heading">
-
-        <small>WHY JOIN</small>
-
-        <h2>
-            BUILT FOR <span>CHAMPIONS</span>
-        </h2>
-
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="card-icon">🏆</div>
-
-            <h3>BIG PRIZES</h3>
-
-            <p>
-                Compete in tournaments and fight
-                for exciting rewards.
             </p>
 
-        </div>
+            <div class="buttons">
 
+                <a
+                    href="#register"
+                    class="btn btn-primary">
 
-        <div class="card">
+                    REGISTER TEAM
 
-            <div class="card-icon">⚡</div>
+                </a>
 
-            <h3>FAST REGISTRATION</h3>
+                <a
+                    href="#leaderboard"
+                    class="btn btn-secondary">
 
-            <p>
-                Register your squad quickly
-                with our simple registration system.
-            </p>
+                    LEADERBOARD
 
-        </div>
+                </a>
 
-
-        <div class="card">
-
-            <div class="card-icon">📊</div>
-
-            <h3>LIVE LEADERBOARD</h3>
-
-            <p>
-                Track kills, placement points
-                and total tournament scores.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">🔐</div>
-
-            <h3>ADMIN CONTROL</h3>
-
-            <p>
-                Tournament admins can manage
-                teams, payments and scores.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= LEADERBOARD ================= -->
-
-<section id="leaderboard">
-
-    <div class="section-heading">
-
-        <small>TOP TEAMS</small>
-
-        <h2>
-            LIVE <span>LEADERBOARD</span>
-        </h2>
-
-    </div>
-
-    <div class="leaderboard">
-
-        <div class="leader-row header">
-
-            <div>#</div>
-
-            <div>TEAM</div>
-
-            <div class="hide-mobile">KILLS</div>
-
-            <div class="hide-mobile">MATCHES</div>
-
-            <div>POINTS</div>
-
-        </div>
-
-
-        <div class="leader-row">
-
-            <div class="rank">01</div>
-
-            <div>
-                <strong>TEAM ALPHA</strong>
-            </div>
-
-            <div class="hide-mobile">42</div>
-
-            <div class="hide-mobile">5</div>
-
-            <div>
-                <strong>128</strong>
             </div>
 
         </div>
 
 
-        <div class="leader-row">
+        <!-- TOURNAMENT CARD -->
 
-            <div class="rank">02</div>
+        <div
+            class="tournament"
+            id="tournament">
 
-            <div>
-                <strong>TEAM WARRIORS</strong>
+            <div class="tournament-top">
+
+                <span>
+                    🏆 UPCOMING TOURNAMENT
+                </span>
+
+                <span class="open">
+                    ● OPEN
+                </span>
+
             </div>
 
-            <div class="hide-mobile">37</div>
+            <h2>
 
-            <div class="hide-mobile">5</div>
+                FF TOURNAMENT<br>
+                CHAMPIONSHIP
 
-            <div>
-                <strong>115</strong>
+            </h2>
+
+            <div class="info">
+
+                <div>
+
+                    <small>
+                        PRIZE POOL
+                    </small>
+
+                    <strong>
+                        ₹10,000
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <small>
+                        ENTRY
+                    </small>
+
+                    <strong>
+                        ₹50
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <small>
+                        TEAMS
+                    </small>
+
+                    <strong>
+                        48
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="countdown">
+
+                <div class="time">
+
+                    <strong id="days">
+                        00
+                    </strong>
+
+                    <small>
+                        DAYS
+                    </small>
+
+                </div>
+
+                <div class="time">
+
+                    <strong id="hours">
+                        00
+                    </strong>
+
+                    <small>
+                        HOURS
+                    </small>
+
+                </div>
+
+                <div class="time">
+
+                    <strong id="minutes">
+                        00
+                    </strong>
+
+                    <small>
+                        MIN
+                    </small>
+
+                </div>
+
+                <div class="time">
+
+                    <strong id="seconds">
+                        00
+                    </strong>
+
+                    <small>
+                        SEC
+                    </small>
+
+                </div>
+
             </div>
 
         </div>
 
+    </section>
 
-        <div class="leader-row">
 
-            <div class="rank">03</div>
+    <!-- ================= FEATURES ================= -->
 
-            <div>
-                <strong>TEAM LEGENDS</strong>
+    <section id="features">
+
+        <div class="section-heading">
+
+            <small>
+                WHY JOIN
+            </small>
+
+            <h2>
+
+                BUILT FOR
+                <span>CHAMPIONS</span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    BIG PRIZES
+                </h3>
+
+                <p>
+
+                    Compete in tournaments and fight
+                    for exciting rewards.
+
+                </p>
+
             </div>
 
-            <div class="hide-mobile">31</div>
 
-            <div class="hide-mobile">5</div>
+            <div class="card">
 
-            <div>
-                <strong>101</strong>
+                <div class="card-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    FAST REGISTRATION
+                </h3>
+
+                <p>
+
+                    Register your squad quickly
+                    with our simple registration system.
+
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📊
+                </div>
+
+                <h3>
+                    LIVE LEADERBOARD
+                </h3>
+
+                <p>
+
+                    Track kills, placement points
+                    and total tournament scores.
+
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    ADMIN CONTROL
+                </h3>
+
+                <p>
+
+                    Tournament admins can manage
+                    teams, payments and scores.
+
+                </p>
+
             </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- ================= RULES ================= -->
+    <!-- ================= LEADERBOARD ================= -->
 
-<section id="rules">
+    <section id="leaderboard">
 
-    <div class="section-heading">
+        <div class="section-heading">
 
-        <small>TOURNAMENT</small>
+            <small>
+                TOP TEAMS
+            </small>
 
-        <h2>
-            BASIC <span>RULES</span>
-        </h2>
+            <h2>
 
-    </div>
+                LIVE
+                <span>LEADERBOARD</span>
 
+            </h2>
 
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="card-icon">🎮</div>
-
-            <h3>FAIR PLAY</h3>
-
-            <p>
-                No hacks, scripts or unauthorized
-                third-party applications.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">👥</div>
-
-            <h3>TEAM SIZE</h3>
-
-            <p>
-                Each registered team must
-                follow the tournament team rules.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">⏰</div>
-
-            <h3>CHECK-IN</h3>
-
-            <p>
-                Players must check in before
-                the scheduled match time.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">🚫</div>
-
-            <h3>NO CHEATING</h3>
-
-            <p>
-                Any confirmed cheating can result
-                in tournament disqualification.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <p>
-        © 2026 FF Tour
+        </
