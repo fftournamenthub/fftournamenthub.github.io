@@ -3,194 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>FF Arena</title>
-
+<title>FF TOURNAMENT HUB</title>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
-body{
-  background:#0b0f19;
-  color:white;
-}
-
-header{
-  background:#111827;
-  padding:18px;
-  text-align:center;
-  border-bottom:1px solid #273244;
-}
-
-header h1{
-  color:#00ff88;
-}
-
-nav{
-  display:flex;
-  overflow:auto;
-  gap:8px;
-  padding:12px;
-  background:#151c2b;
-}
-
-nav button{
-  white-space:nowrap;
-  background:#202a3d;
-  color:white;
-  border:0;
-  padding:10px 14px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-nav button:hover{
-  background:#00a86b;
-}
-
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:20px;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-.card{
-  background:#151c2b;
-  border:1px solid #273244;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:15px;
-}
-
-.card h2,
-.card h3{
-  margin-bottom:10px;
-}
-
-input,select{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:8px;
-  border:1px solid #39465c;
-  background:#0f1522;
-  color:white;
-}
-
-.btn{
-  background:#00c878;
-  color:#00140c;
-  border:0;
-  padding:11px 16px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  margin-top:6px;
-}
-
-.btn:hover{
-  background:#00ff9d;
-}
-
-.danger{
-  background:#ff4545;
-  color:white;
-}
-
-.small{
-  color:#9ca8bb;
-  font-size:14px;
-  margin:5px 0;
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:#23314a;
-  color:#00ff9d;
-  font-size:12px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-
-th,td{
-  padding:10px;
-  border-bottom:1px solid #2a3548;
-  text-align:left;
-}
-
-.hero{
-  text-align:center;
-  padding:35px 10px;
-}
-
-.hero h2{
-  font-size:32px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:#aeb8c8;
-  margin-bottom:20px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.stat{
-  background:#151c2b;
-  padding:18px;
-  border-radius:12px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:24px;
-  color:#00ff9d;
-}
-
-@media(max-width:600px){
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .hero h2{
-    font-size:25px;
-  }
-
-  table{
-    font-size:13px;
-  }
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0b0f14;color:#f4f7fb}
+header{background:linear-gradient(135deg,#101820,#172b38);padding:22px 16px;text-align:center;border-bottom:1px solid #263846}
+.logo{font-size:30px;font-weight:800;color:#59e0ad}
+.sub{color:#aebbc5;margin-top:5px}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#0e141b;position:sticky;top:0;z-index:5}
+button,.btn{border:0;border-radius:8px;padding:10px 14px;background:#59e0ad;color:#06110d;font-weight:700;cursor:pointer}
+button.secondary{background:#27333d;color:#fff}
+button.danger{background:#e85d75;color:#fff}
+button:disabled{opacity:.45;cursor:not-allowed}
+main{max-width:1050px;margin:auto;padding:20px}
+.page{display:none}.page.active{display:block}
+.hero{text-align:center;padding:35px 15px}
+.hero h1{font-size:38px;margin:10px 0}.hero p{color:#b7c3cb}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#121a22;border:1px solid #263542;border-radius:12px;padding:18px;margin-bottom:15px}
+.stat{text-align:center}.stat b{display:block;font-size:30px;color:#59e0ad}
+input,select{width:100%;padding:12px;margin:7px 0 12px;border-radius:8px;border:1px solid #334654;background:#0c1218;color:#fff}
+label{font-size:13px;color:#b7c3cb}
+h2{margin-top:5px}.muted{color:#9aa9b4}.success{color:#59e0ad}.error{color:#ff7187}
+.badge{display:inline-block;padding:5px 8px;border-radius:20px;background:#22333c;color:#8fe8c8;font-size:12px}
+table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #293640;text-align:left}th{color:#8fe8c8}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:15px;z-index:20}
+.modal.show{display:flex}.modalbox{background:#121a22;border:1px solid #334654;border-radius:12px;padding:20px;max-width:500px;width:100%}
+.small{font-size:12px}.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.notice{padding:12px;border-radius:8px;background:#19242c;color:#c8d3da;margin:10px 0}
+@media(max-width:600px){.hero h1{font-size:30px}main{padding:12px}table{font-size:13px}}
 </style>
 </head>
-
 <body>
-
 <header>
-  <h1>🔥 FF ARENA</h1>
-  <p>Free Fire Tournament Platform</p>
+  <div class="logo">🏆 FF TOURNAMENT HUB</div>
+  <div class="sub">Free Fire Tournament Platform</div>
 </header>
 
 <nav>
@@ -203,896 +51,235 @@ th,td{
   <button onclick="showPage('admin')">Admin</button>
 </nav>
 
-<div class="container">
-
-<!-- HOME -->
-
+<main>
 <section id="home" class="page active">
-
-<div class="hero">
-  <h2>Welcome to FF Arena</h2>
-  <p>Join tournaments, compete with players and climb the leaderboard.</p>
-
-  <button class="btn" onclick="showPage('tournaments')">
-    View Tournaments
-  </button>
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong id="totalPlayers">0</strong>
-Players
-</div>
-
-<div class="stat">
-<strong id="totalTournaments">0</strong>
-Tournaments
-</div>
-
-<div class="stat">
-<strong id="totalResults">0</strong>
-Results
-</div>
-
-</div>
-
+  <div class="hero">
+    <h1>Welcome to FF Tournament Hub</h1>
+    <p>Join tournaments, compete with players and climb the leaderboard.</p>
+    <button onclick="showPage('tournaments')">View Tournaments</button>
+  </div>
+  <div class="grid">
+    <div class="card stat"><b id="statPlayers">0</b>Players</div>
+    <div class="card stat"><b id="statTournaments">0</b>Tournaments</div>
+    <div class="card stat"><b id="statResults">0</b>Results</div>
+  </div>
+  <div class="notice">Demo version: data is stored in this browser using localStorage. Real multi-user login/database requires a backend.</div>
 </section>
-
-
-<!-- LOGIN -->
 
 <section id="login" class="page">
-
-<div class="card">
-
-<h2>👤 Player Login</h2>
-
-<input id="playerName" placeholder="Enter your name">
-
-<input id="playerUid" placeholder="Enter Free Fire UID">
-
-<button class="btn" onclick="playerLogin()">
-Login
-</button>
-
-<p id="loginMessage" class="small"></p>
-
-</div>
-
+  <h2>👤 Player Login / Register</h2>
+  <div id="loginArea" class="grid">
+    <div class="card">
+      <h3>Register</h3>
+      <label>Name</label><input id="regName" placeholder="Your name">
+      <label>Free Fire UID</label><input id="regUid" placeholder="Your UID">
+      <label>Password</label><input id="regPass" type="password" placeholder="Password">
+      <button onclick="registerPlayer()">Create Account</button>
+      <p id="regMsg"></p>
+    </div>
+    <div class="card">
+      <h3>Login</h3>
+      <label>Free Fire UID</label><input id="loginUid" placeholder="Your UID">
+      <label>Password</label><input id="loginPass" type="password" placeholder="Password">
+      <button onclick="loginPlayer()">Login</button>
+      <p id="loginMsg"></p>
+    </div>
+  </div>
+  <div id="userBox" class="card" style="display:none"></div>
 </section>
-
-
-<!-- TOURNAMENTS -->
 
 <section id="tournaments" class="page">
-
-<h2>🏆 Tournaments</h2>
-
-<div id="tournamentList"></div>
-
+  <div class="topline"><h2>🏆 Tournaments</h2><span class="badge">Open tournaments</span></div>
+  <div id="tournamentList"></div>
 </section>
-
-
-<!-- MY GAMES -->
 
 <section id="mygames" class="page">
-
-<h2>🎮 My Games</h2>
-
-<div id="myGamesList"></div>
-
+  <h2>🎮 My Games</h2>
+  <div id="myGamesList"></div>
 </section>
-
-
-<!-- LEADERBOARD -->
 
 <section id="leaderboard" class="page">
-
-<h2>🏅 Leaderboard</h2>
-
-<div class="card">
-
-<table>
-
-<thead>
-<tr>
-<th>Rank</th>
-<th>Player</th>
-<th>Points</th>
-</tr>
-</thead>
-
-<tbody id="leaderboardBody"></tbody>
-
-</table>
-
-</div>
-
+  <h2>🥇 Leaderboard</h2>
+  <div id="leaderboardList"></div>
 </section>
-
-
-<!-- RESULTS -->
 
 <section id="results" class="page">
-
-<h2>📜 Result History</h2>
-
-<div id="resultsList"></div>
-
+  <h2>📜 Result History</h2>
+  <div id="resultsList"></div>
 </section>
-
-
-<!-- ADMIN -->
 
 <section id="admin" class="page">
-
-<div class="card" id="adminLoginBox">
-
-<h2>🛠️ Admin Login</h2>
-
-<input id="adminPassword" type="password" placeholder="Admin password">
-
-<button class="btn" onclick="adminLogin()">
-Login
-</button>
-
-<p id="adminMessage" class="small"></p>
-
-</div>
-
-
-<div id="adminPanel" style="display:none">
-
-<div class="card">
-
-<h2>➕ Create Tournament</h2>
-
-<input id="tourName" placeholder="Tournament name">
-
-<input id="tourDate" type="datetime-local">
-
-<input id="tourPrize" placeholder="Prize">
-
-<button class="btn" onclick="createTournament()">
-Create Tournament
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h2>🚪 Add Room Details</h2>
-
-<select id="roomTournament"></select>
-
-<input id="roomId" placeholder="Room ID">
-
-<input id="roomPassword" placeholder="Room Password">
-
-<button class="btn" onclick="saveRoom()">
-Save Room
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h2>🏆 Publish Result</h2>
-
-<select id="resultTournament"></select>
-
-<input id="resultPlayer" placeholder="Player name">
-
-<input id="resultPoints" type="number" placeholder="Points">
-
-<button class="btn" onclick="publishResult()">
-Publish Result
-</button>
-
-</div>
-
-</div>
-
+  <h2>🔐 Admin Panel</h2>
+  <div id="adminLoginBox" class="card">
+    <p class="muted">Demo admin login. Change/remove this before using a real public system.</p>
+    <label>Admin username</label><input id="adminUser" placeholder="admin">
+    <label>Admin password</label><input id="adminPass" type="password" placeholder="admin123">
+    <button onclick="adminLogin()">Admin Login</button>
+    <p id="adminMsg"></p>
+  </div>
+  <div id="adminPanel" style="display:none">
+    <div class="card">
+      <h3>➕ Create Tournament</h3>
+      <input id="tName" placeholder="Tournament name">
+      <input id="tDate" type="datetime-local">
+      <input id="tMap" placeholder="Map e.g. Bermuda">
+      <input id="tSlots" type="number" placeholder="Slots e.g. 48">
+      <input id="tRoom" placeholder="Room ID">
+      <input id="tPassword" placeholder="Room Password">
+      <input id="tPrize" placeholder="Prize e.g. ₹500">
+      <button onclick="createTournament()">Create Tournament</button>
+    </div>
+    <div class="card">
+      <h3>📊 Publish Result</h3>
+      <select id="resultTournament"></select>
+      <input id="resultUid" placeholder="Player UID">
+      <input id="resultKills" type="number" placeholder="Kills">
+      <input id="resultPoints" type="number" placeholder="Placement points">
+      <button onclick="publishResult()">Publish Result</button>
+      <p class="small muted">Duplicate results for the same player+tournament are blocked.</p>
+    </div>
+    <div class="card">
+      <h3>⚙️ Admin Tournament List</h3>
+      <div id="adminTournamentList"></div>
+    </div>
+    <button class="danger" onclick="adminLogout()">Admin Logout</button>
+  </div>
 </section>
+</main>
 
-</div>
-
+<div id="modal" class="modal"><div class="modalbox" id="modalContent"></div></div>
 
 <script>
-
-let currentPlayer =
-JSON.parse(localStorage.getItem("ff_current_player")) || null;
-
-let tournaments =
-JSON.parse(localStorage.getItem("ff_tournaments")) || [];
-
-let joinedGames =
-JSON.parse(localStorage.getItem("ff_joined_games")) || [];
-
-let results =
-JSON.parse(localStorage.getItem("ff_results")) || [];
-
-let players =
-JSON.parse(localStorage.getItem("ff_players")) || [];
-
-
-// DEFAULT TOURNAMENT
-
-if(tournaments.length === 0){
-
-tournaments.push({
-
-id:Date.now(),
-
-name:"FF Arena Opening Tournament",
-
-date:"2026-10-01T20:00",
-
-prize:"₹500",
-
-roomId:"",
-
-roomPassword:""
-
-});
-
-saveData();
-
+const KEY='ffth_data_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'null');
+if(!data){
+  data={
+    players:[],
+    tournaments:[{
+      id:'T1',name:'FFTH Opening Cup',date:'2026-10-05T20:00',
+      map:'Bermuda',slots:48,joined:0,room:'ROOM-DEMO',password:'1234',
+      prize:'₹500',status:'Open'
+    }],
+    joins:[],results:[]
+  };
+  save();
 }
+let currentUid=localStorage.getItem('ffth_current_uid')||'';
+let admin=false;
 
-
-// PAGE NAVIGATION
-
-function showPage(page){
-
-document.querySelectorAll(".page").forEach(function(p){
-
-p.classList.remove("active");
-
-});
-
-document.getElementById(page).classList.add("active");
-
-if(page === "tournaments") renderTournaments();
-
-if(page === "mygames") renderMyGames();
-
-if(page === "leaderboard") renderLeaderboard();
-
-if(page === "results") renderResults();
-
+function save(){localStorage.setItem(KEY,JSON.stringify(data));}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  renderAll();
 }
-
-
-// SAVE DATA
-
-function saveData(){
-
-localStorage.setItem(
-"ff_tournaments",
-JSON.stringify(tournaments)
-);
-
-localStorage.setItem(
-"ff_joined_games",
-JSON.stringify(joinedGames)
-);
-
-localStorage.setItem(
-"ff_results",
-JSON.stringify(results)
-);
-
-localStorage.setItem(
-"ff_players",
-JSON.stringify(players)
-);
-
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function currentPlayer(){return data.players.find(p=>p.uid===currentUid);}
+function registerPlayer(){
+  const name=document.getElementById('regName').value.trim(),uid=document.getElementById('regUid').value.trim(),pass=document.getElementById('regPass').value;
+  const m=document.getElementById('regMsg');
+  if(!name||!uid||!pass){m.className='error';m.textContent='Please fill all fields.';return;}
+  if(data.players.some(p=>p.uid===uid)){m.className='error';m.textContent='UID already registered.';return;}
+  data.players.push({name,uid,password:pass});
+  save(); m.className='success';m.textContent='Account created. You can login now.';
+  document.getElementById('regName').value='';document.getElementById('regUid').value='';document.getElementById('regPass').value='';
+  renderAll();
 }
-
-
-// PLAYER LOGIN
-
-function playerLogin(){
-
-let name =
-document.getElementById("playerName").value.trim();
-
-let uid =
-document.getElementById("playerUid").value.trim();
-
-if(!name || !uid){
-
-document.getElementById("loginMessage").innerText =
-"Please enter name and UID.";
-
-return;
-
+function loginPlayer(){
+  const uid=document.getElementById('loginUid').value.trim(),pass=document.getElementById('loginPass').value,m=document.getElementById('loginMsg');
+  const p=data.players.find(x=>x.uid===uid&&x.password===pass);
+  if(!p){m.className='error';m.textContent='Invalid UID or password.';return;}
+  currentUid=uid;localStorage.setItem('ffth_current_uid',uid);m.className='success';m.textContent='Login successful!';
+  renderAll();
 }
-
-currentPlayer = {
-
-name:name,
-
-uid:uid
-
-};
-
-localStorage.setItem(
-"ff_current_player",
-JSON.stringify(currentPlayer)
-);
-
-if(!players.find(p => p.uid === uid)){
-
-players.push({
-
-name:name,
-
-uid:uid,
-
-points:0
-
-});
-
-}
-
-saveData();
-
-document.getElementById("loginMessage").innerText =
-"✅ Login successful! Welcome " + name;
-
-}
-
-
-// RENDER TOURNAMENTS
-
-function renderTournaments(){
-
-let box =
-document.getElementById("tournamentList");
-
-box.innerHTML = "";
-
-tournaments.forEach(function(t){
-
-let joined =
-joinedGames.some(function(g){
-
-return g.tournamentId === t.id &&
-g.uid === (currentPlayer ? currentPlayer.uid : "");
-
-});
-
-
-box.innerHTML += `
-
-<div class="card">
-
-<h3>${t.name}</h3>
-
-<p class="small">📅 ${t.date}</p>
-
-<p class="small">💰 Prize: ${t.prize}</p>
-
-${
-t.roomId
-?
-`<span class="badge">Room Available</span>`
-:
-`<span class="badge">Room Not Added</span>`
-}
-
-<br><br>
-
-${
-joined
-?
-`<button class="btn" disabled>✅ Joined</button>`
-:
-`<button class="btn"
-onclick="joinTournament(${t.id})">
-Join Tournament
-</button>`
-}
-
-</div>
-
-`;
-
-});
-
-}
-
-
-// JOIN TOURNAMENT
-
+function logoutPlayer(){currentUid='';localStorage.removeItem('ffth_current_uid');renderAll();}
 function joinTournament(id){
-
-if(!currentPlayer){
-
-alert("Please login first.");
-
-showPage("login");
-
-return;
-
+  const p=currentPlayer();const t=data.tournaments.find(x=>x.id===id);
+  if(!p){showPage('login');alert('Please login first.');return;}
+  if(!t||t.status!=='Open'){alert('Tournament is not open.');return;}
+  if(data.joins.some(j=>j.uid===p.uid&&j.tid===id)){alert('You already joined this tournament.');return;}
+  const count=data.joins.filter(j=>j.tid===id).length;
+  if(count>=Number(t.slots)){alert('Tournament is full.');return;}
+  data.joins.push({uid:p.uid,tid:id,joinedAt:new Date().toISOString()});
+  save();alert('Tournament joined successfully!');renderAll();
 }
-
-let already =
-joinedGames.some(function(g){
-
-return g.tournamentId === id &&
-g.uid === currentPlayer.uid;
-
-});
-
-if(already){
-
-alert("You already joined this tournament.");
-
-return;
-
+function leaveTournament(id){
+  data.joins=data.joins.filter(j=>!(j.uid===currentUid&&j.tid===id));save();renderAll();
 }
-
-joinedGames.push({
-
-tournamentId:id,
-
-uid:currentPlayer.uid,
-
-name:currentPlayer.name
-
-});
-
-saveData();
-
-alert("✅ Tournament joined successfully!");
-
-renderTournaments();
-
+function showRoom(id){
+  const t=data.tournaments.find(x=>x.id===id);
+  document.getElementById('modalContent').innerHTML='<h3>🔑 Room Details</h3><p><b>Room ID:</b> '+esc(t.room)+'</p><p><b>Password:</b> '+esc(t.password)+'</p><button onclick="closeModal()">Close</button>';
+  document.getElementById('modal').classList.add('show');
 }
-
-
-// MY GAMES
-
-function renderMyGames(){
-
-let box =
-document.getElementById("myGamesList");
-
-box.innerHTML = "";
-
-if(!currentPlayer){
-
-box.innerHTML = `
-<div class="card">
-Please login first.
-</div>
-`;
-
-return;
-
-}
-
-let games =
-joinedGames.filter(function(g){
-
-return g.uid === currentPlayer.uid;
-
-});
-
-
-if(games.length === 0){
-
-box.innerHTML = `
-<div class="card">
-No games joined yet.
-</div>
-`;
-
-return;
-
-}
-
-
-games.forEach(function(g){
-
-let t =
-tournaments.find(function(x){
-
-return x.id === g.tournamentId;
-
-});
-
-box.innerHTML += `
-
-<div class="card">
-
-<h3>${t ? t.name : "Tournament"}</h3>
-
-<p class="small">Player: ${g.name}</p>
-
-${
-t && t.roomId
-?
-`
-<p>🚪 Room ID: <b>${t.roomId}</b></p>
-<p>🔑 Password: <b>${t.roomPassword}</b></p>
-`
-:
-`
-<p class="small">Room details will appear here when admin adds them.</p>
-`
-}
-
-</div>
-
-`;
-
-});
-
-}
-
-
-// LEADERBOARD
-
-function renderLeaderboard(){
-
-let body =
-document.getElementById("leaderboardBody");
-
-body.innerHTML = "";
-
-let sorted =
-[...players].sort(function(a,b){
-
-return b.points - a.points;
-
-});
-
-
-sorted.forEach(function(p,index){
-
-body.innerHTML += `
-
-<tr>
-
-<td>#${index + 1}</td>
-
-<td>${p.name}</td>
-
-<td>${p.points}</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-// RESULTS
-
-function renderResults(){
-
-let box =
-document.getElementById("resultsList");
-
-box.innerHTML = "";
-
-if(results.length === 0){
-
-box.innerHTML = `
-<div class="card">
-No results published yet.
-</div>
-`;
-
-return;
-
-}
-
-
-results.forEach(function(r){
-
-box.innerHTML += `
-
-<div class="card">
-
-<h3>🏆 ${r.tournament}</h3>
-
-<p>Player: <b>${r.player}</b></p>
-
-<p>Points: <b>${r.points}</b></p>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-// ADMIN LOGIN
-
+function closeModal(){document.getElementById('modal').classList.remove('show');}
 function adminLogin(){
-
-let password =
-document.getElementById("adminPassword").value;
-
-if(password === "admin123"){
-
-document.getElementById("adminLoginBox")
-.style.display = "none";
-
-document.getElementById("adminPanel")
-.style.display = "block";
-
-updateAdminSelects();
-
+  const u=document.getElementById('adminUser').value,p=document.getElementById('adminPass').value,m=document.getElementById('adminMsg');
+  if(u==='admin'&&p==='admin123'){admin=true;m.className='success';m.textContent='Admin login successful.';renderAll();}
+  else{m.className='error';m.textContent='Invalid admin login.';}
 }
-
-else{
-
-document.getElementById("adminMessage").innerText =
-"❌ Wrong password.";
-
-}
-
-}
-
-
-// CREATE TOURNAMENT
-
+function adminLogout(){admin=false;renderAll();}
 function createTournament(){
-
-let name =
-document.getElementById("tourName").value.trim();
-
-let date =
-document.getElementById("tourDate").value;
-
-let prize =
-document.getElementById("tourPrize").value.trim();
-
-
-if(!name || !date || !prize){
-
-alert("Please fill all fields.");
-
-return;
-
+  if(!admin)return;
+  const name=document.getElementById('tName').value.trim(),date=document.getElementById('tDate').value,map=document.getElementById('tMap').value.trim(),slots=Number(document.getElementById('tSlots').value),room=document.getElementById('tRoom').value.trim(),password=document.getElementById('tPassword').value.trim(),prize=document.getElementById('tPrize').value.trim();
+  if(!name||!date||!slots){alert('Tournament name, date and slots are required.');return;}
+  data.tournaments.push({id:'T'+Date.now(),name,date,map:map||'Bermuda',slots,joined:0,room:room||'Not published',password:password||'Not published',prize:prize||'TBA',status:'Open'});
+  save();alert('Tournament created.');renderAll();
 }
-
-
-tournaments.push({
-
-id:Date.now(),
-
-name:name,
-
-date:date,
-
-prize:prize,
-
-roomId:"",
-
-roomPassword:""
-
-});
-
-
-saveData();
-
-alert("✅ Tournament created!");
-
-updateAdminSelects();
-
-renderTournaments();
-
-}
-
-
-// ADMIN SELECTS
-
-function updateAdminSelects(){
-
-let roomSelect =
-document.getElementById("roomTournament");
-
-let resultSelect =
-document.getElementById("resultTournament");
-
-roomSelect.innerHTML = "";
-
-resultSelect.innerHTML = "";
-
-
-tournaments.forEach(function(t){
-
-roomSelect.innerHTML +=
-`<option value="${t.id}">${t.name}</option>`;
-
-resultSelect.innerHTML +=
-`<option value="${t.id}">${t.name}</option>`;
-
-});
-
-}
-
-
-// SAVE ROOM
-
-function saveRoom(){
-
-let id =
-Number(document.getElementById("roomTournament").value);
-
-let roomId =
-document.getElementById("roomId").value.trim();
-
-let password =
-document.getElementById("roomPassword").value.trim();
-
-
-let tournament =
-tournaments.find(function(t){
-
-return t.id === id;
-
-});
-
-
-if(!tournament){
-
-return;
-
-}
-
-
-tournament.roomId = roomId;
-
-tournament.roomPassword = password;
-
-saveData();
-
-alert("✅ Room details saved!");
-
-}
-
-
-// PUBLISH RESULT
-
 function publishResult(){
-
-let tournamentId =
-Number(document.getElementById("resultTournament").value);
-
-let playerName =
-document.getElementById("resultPlayer").value.trim();
-
-let points =
-Number(document.getElementById("resultPoints").value);
-
-
-let tournament =
-tournaments.find(function(t){
-
-return t.id === tournamentId;
-
-});
-
-
-if(!tournament || !playerName || !points){
-
-alert("Please fill all fields.");
-
-return;
-
+  if(!admin)return;
+  const tid=document.getElementById('resultTournament').value,uid=document.getElementById('resultUid').value.trim(),kills=Number(document.getElementById('resultKills').value||0),points=Number(document.getElementById('resultPoints').value||0);
+  if(!tid||!uid){alert('Select tournament and enter player UID.');return;}
+  if(!data.players.some(p=>p.uid===uid)){alert('Player UID not found.');return;}
+  if(data.results.some(r=>r.tid===tid&&r.uid===uid)){alert('Duplicate result blocked for this player and tournament.');return;}
+  data.results.push({id:'R'+Date.now(),tid,uid,kills,points,total:points+kills,createdAt:new Date().toISOString()});
+  save();alert('Result published and leaderboard updated.');renderAll();
 }
-
-
-// DUPLICATE PROTECTION
-
-let duplicate =
-results.some(function(r){
-
-return r.tournamentId === tournamentId &&
-r.player.toLowerCase() === playerName.toLowerCase();
-
-});
-
-
-if(duplicate){
-
-alert("❌ Result already published for this player.");
-
-return;
-
+function renderHome(){
+  document.getElementById('statPlayers').textContent=data.players.length;
+  document.getElementById('statTournaments').textContent=data.tournaments.length;
+  document.getElementById('statResults').textContent=data.results.length;
 }
-
-
-results.push({
-
-tournamentId:tournamentId,
-
-tournament:tournament.name,
-
-player:playerName,
-
-points:points
-
-});
-
-
-let player =
-players.find(function(p){
-
-return p.name.toLowerCase() === playerName.toLowerCase();
-
-});
-
-
-if(player){
-
-player.points += points;
-
+function renderLogin(){
+  const box=document.getElementById('userBox'),area=document.getElementById('loginArea'),p=currentPlayer();
+  if(p){area.style.display='none';box.style.display='block';box.innerHTML='<div class="topline"><div><h3>Welcome, '+esc(p.name)+' 👋</h3><p class="muted">UID: '+esc(p.uid)+'</p></div><button class="secondary" onclick="logoutPlayer()">Logout</button></div>';}
+  else{area.style.display='grid';box.style.display='none';}
 }
-else{
-
-players.push({
-
-name:playerName,
-
-uid:"",
-
-points:points
-
-});
-
+function renderTournaments(){
+  const el=document.getElementById('tournamentList');
+  if(!data.tournaments.length){el.innerHTML='<div class="card">No tournaments yet.</div>';return;}
+  el.innerHTML=data.tournaments.map(t=>{
+    const joined=data.joins.some(j=>j.uid===currentUid&&j.tid===t.id),count=data.joins.filter(j=>j.tid===t.id).length;
+    return '<div class="card"><div class="topline"><h3>🏆 '+esc(t.name)+'</h3><span class="badge">'+esc(t.status)+'</span></div><p>📅 '+esc(t.date)+'</p><p>🗺️ Map: '+esc(t.map)+' · 🎟️ Slots: '+count+'/'+esc(t.slots)+'</p><p>💰 Prize: '+esc(t.prize)+'</p><div class="actions">'+
+      (joined?'<button class="secondary" onclick="showRoom(\\''+t.id+'\\')">🔑 Room Details</button><button class="danger" onclick="leaveTournament(\\''+t.id+'\\')">Leave</button>':'<button '+(count>=Number(t.slots)?'disabled':'')+' onclick="joinTournament(\\''+t.id+'\\')">Join Tournament</button>')+
+      '</div></div>';
+  }).join('');
 }
-
-
-saveData();
-
-alert("🏆 Result published successfully!");
-
-renderLeaderboard();
-
-renderResults();
-
+function renderMyGames(){
+  const el=document.getElementById('myGamesList');
+  if(!currentPlayer()){el.innerHTML='<div class="card">Please login to see your games.</div>';return;}
+  const mine=data.joins.filter(j=>j.uid===currentUid);
+  if(!mine.length){el.innerHTML='<div class="card">You have not joined any tournament yet.</div>';return;}
+  el.innerHTML=mine.map(j=>{const t=data.tournaments.find(x=>x.id===j.tid);const r=data.results.find(x=>x.uid===currentUid&&x.tid===j.tid);return '<div class="card"><h3>'+esc(t?.name||'Tournament')+'</h3><p>Status: <span class="badge">'+(r?'Result Published':'Joined')+'</span></p>'+(r?'<p>🏅 Kills: '+r.kills+' · Points: '+r.points+' · Total: '+r.total+'</p>':'<button onclick="showRoom(\\''+j.tid+'\\')">Room Details</button>')+'</div>';}).join('');
 }
-
-
-// HOME STATS
-
-function updateStats(){
-
-document.getElementById("totalPlayers")
-.innerText = players.length;
-
-document.getElementById("totalTournaments")
-.innerText = tournaments.length;
-
-document.getElementById("totalResults")
-.innerText = results.length;
-
+function renderLeaderboard(){
+  const totals={};
+  data.results.forEach(r=>{totals[r.uid]=(totals[r.uid]||0)+Number(r.total||0);});
+  const rows=Object.entries(totals).sort((a,b)=>b[1]-a[1]).map(([uid,total],i)=>{const p=data.players.find(x=>x.uid===uid);return '<tr><td>'+(i+1)+'</td><td>'+esc(p?.name||uid)+'</td><td>'+esc(uid)+'</td><td>'+total+'</td></tr>';}).join('');
+  document.getElementById('leaderboardList').innerHTML=rows?'<div class="card"><table><tr><th>Rank</th><th>Player</th><th>UID</th><th>Total Points</th></tr>'+rows+'</table></div>':'<div class="card">No published results yet.</div>';
 }
-
-
-// INITIAL LOAD
-
-updateStats();
-
-renderTournaments();
-
+function renderResults(){
+  const rows=data.results.slice().reverse().map(r=>{const p=data.players.find(x=>x.uid===r.uid),t=data.tournaments.find(x=>x.id===r.tid);return '<tr><td>'+esc(t?.name||r.tid)+'</td><td>'+esc(p?.name||r.uid)+'</td><td>'+r.kills+'</td><td>'+r.points+'</td><td>'+r.total+'</td></tr>';}).join('');
+  document.getElementById('resultsList').innerHTML=rows?'<div class="card"><table><tr><th>Tournament</th><th>Player</th><th>Kills</th><th>Placement</th><th>Total</th></tr>'+rows+'</table></div>':'<div class="card">No results published yet.</div>';
+}
+function renderAdmin(){
+  document.getElementById('adminLoginBox').style.display=admin?'none':'block';
+  document.getElementById('adminPanel').style.display=admin?'block':'none';
+  if(!admin)return;
+  document.getElementById('resultTournament').innerHTML=data.tournaments.map(t=>'<option value="'+t.id+'">'+esc(t.name)+'</option>').join('');
+  document.getElementById('adminTournamentList').innerHTML=data.tournaments.map(t=>'<p><b>'+esc(t.name)+'</b> — '+data.joins.filter(j=>j.tid===t.id).length+'/'+t.slots+' joined</p>').join('');
+}
+function renderAll(){renderHome();renderLogin();renderTournaments();renderMyGames();renderLeaderboard();renderResults();renderAdmin();}
+renderAll();
 </script>
-
 </body>
 </html>
