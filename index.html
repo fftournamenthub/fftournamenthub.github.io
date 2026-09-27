@@ -2,284 +2,153 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FF TOURNAMENT HUB</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FF TOURNAMENT HUB — Battle Arena</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@400;500;600;700&display=swap');
+:root{--bg:#05070b;--card:rgba(15,21,31,.82);--line:rgba(255,255,255,.1);--cyan:#57f0c0;--gold:#ffc857;--red:#ff4d67;--text:#f5f7fb;--muted:#9da9b8}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0b0f14;color:#f4f7fb}
-header{background:linear-gradient(135deg,#101820,#172b38);padding:22px 16px;text-align:center;border-bottom:1px solid #263846}
-.logo{font-size:30px;font-weight:800;color:#59e0ad}
-.sub{color:#aebbc5;margin-top:5px}
-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#0e141b;position:sticky;top:0;z-index:5}
-button,.btn{border:0;border-radius:8px;padding:10px 14px;background:#59e0ad;color:#06110d;font-weight:700;cursor:pointer}
-button.secondary{background:#27333d;color:#fff}
-button.danger{background:#e85d75;color:#fff}
-button:disabled{opacity:.45;cursor:not-allowed}
-main{max-width:1050px;margin:auto;padding:20px}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#183b42 0,#091017 34%,#04060a 72%);color:var(--text);font-family:Poppins,Arial,sans-serif;overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;width:420px;height:420px;border-radius:50%;filter:blur(80px);opacity:.14;pointer-events:none;z-index:-2}
+body:before{background:#25e6c1;left:-180px;top:140px;animation:float 8s ease-in-out infinite}
+body:after{background:#ff365b;right:-180px;top:420px;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translateY(-45px) scale(1.08)}}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.p{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.35;animation:rise linear infinite}
+@keyframes rise{from{transform:translateY(110vh);opacity:0}20%{opacity:.4}90%{opacity:.15}to{transform:translateY(-10vh);opacity:0}}
+header{position:sticky;top:0;z-index:50;background:rgba(4,7,11,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:white}
+.brand-mark{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),#ff7a3d);box-shadow:0 0 25px #ff9d3d55;font-size:23px}
+.brand b{font-family:Orbitron;font-size:16px;letter-spacing:1px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}
+nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+nav button{background:transparent;border:1px solid transparent;color:#cbd5df;padding:9px 11px;border-radius:9px;cursor:pointer;font-weight:600}
+nav button:hover,nav button.active{background:#ffffff0b;border-color:#ffffff18;color:var(--cyan);box-shadow:0 0 20px #57f0c01c}
+main{max-width:1180px;margin:auto;padding:0 18px 50px}
 .page{display:none}.page.active{display:block}
-.hero{text-align:center;padding:35px 15px}
-.hero h1{font-size:38px;margin:10px 0}.hero p{color:#b7c3cb}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card{background:#121a22;border:1px solid #263542;border-radius:12px;padding:18px;margin-bottom:15px}
-.stat{text-align:center}.stat b{display:block;font-size:30px;color:#59e0ad}
-input,select{width:100%;padding:12px;margin:7px 0 12px;border-radius:8px;border:1px solid #334654;background:#0c1218;color:#fff}
-label{font-size:13px;color:#b7c3cb}
-h2{margin-top:5px}.muted{color:#9aa9b4}.success{color:#59e0ad}.error{color:#ff7187}
-.badge{display:inline-block;padding:5px 8px;border-radius:20px;background:#22333c;color:#8fe8c8;font-size:12px}
-table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #293640;text-align:left}th{color:#8fe8c8}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:15px;z-index:20}
-.modal.show{display:flex}.modalbox{background:#121a22;border:1px solid #334654;border-radius:12px;padding:20px;max-width:500px;width:100%}
-.small{font-size:12px}.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
-.notice{padding:12px;border-radius:8px;background:#19242c;color:#c8d3da;margin:10px 0}
-@media(max-width:600px){.hero h1{font-size:30px}main{padding:12px}table{font-size:13px}}
+.hero{min-height:570px;display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center;position:relative}
+.kicker{display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid #57f0c044;background:#57f0c00b;border-radius:99px;color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:1px}
+.hero h1{font-family:Orbitron;font-size:clamp(38px,6vw,72px);line-height:1.02;margin:18px 0 14px}
+.gradient{background:linear-gradient(90deg,#fff,var(--cyan),#ffc857);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:650px;color:#aeb8c5;font-size:16px;line-height:1.8}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.btn{border:0;border-radius:10px;padding:12px 17px;background:linear-gradient(135deg,#57f0c0,#24cfa4);color:#03100d;font-weight:800;cursor:pointer;box-shadow:0 10px 30px #57f0c01c;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 35px #57f0c033}
+.btn.alt{background:#ffffff08;color:#fff;border:1px solid var(--line);box-shadow:none}
+.btn.gold{background:linear-gradient(135deg,#ffd86a,#ff9b3d)}
+.btn.red{background:#ff4d6722;color:#ff8093;border:1px solid #ff4d6738;box-shadow:none}
+.visual{height:430px;position:relative;display:grid;place-items:center}
+.ring{position:absolute;width:330px;height:330px;border-radius:50%;border:1px solid #57f0c055;box-shadow:0 0 80px #57f0c018,inset 0 0 80px #57f0c00c;animation:spin 14s linear infinite}
+.ring:before,.ring:after{content:"";position:absolute;border-radius:50%;border:1px dashed #ffc85755;inset:30px;animation:spin 8s linear infinite reverse}
+.ring:after{inset:65px;border-color:#ff4d6755}
+@keyframes spin{to{transform:rotate(360deg)}}
+.character{position:relative;width:250px;height:330px;filter:drop-shadow(0 20px 35px #000)}
+.head{position:absolute;width:72px;height:82px;border-radius:45% 45% 40% 40%;background:linear-gradient(145deg,#5b6570,#202733);left:89px;top:25px;box-shadow:inset -10px -8px 20px #0006}
+.head:after{content:"";position:absolute;left:8px;top:20px;width:56px;height:18px;border-radius:4px;background:#0b1017;box-shadow:0 0 13px #57f0c0}
+.body{position:absolute;left:65px;top:100px;width:120px;height:150px;border-radius:35px 35px 20px 20px;background:linear-gradient(135deg,#303b48,#101722);border:1px solid #73818e44}
+.body:before{content:"FF";position:absolute;left:35px;top:46px;font-family:Orbitron;font-size:30px;font-weight:900;color:#57f0c0;transform:skew(-7deg)}
+.arm{position:absolute;width:40px;height:135px;border-radius:25px;background:#27313c;top:115px}.arm.l{left:32px;transform:rotate(25deg)}.arm.r{right:32px;transform:rotate(-25deg)}
+.gun{position:absolute;width:145px;height:15px;border-radius:8px;background:#161c23;right:-40px;top:188px;transform:rotate(-17deg);box-shadow:0 0 10px #000}.gun:after{content:"";position:absolute;right:-28px;top:4px;width:35px;height:7px;background:#57f0c0;border-radius:5px}
+.leg{position:absolute;width:50px;height:125px;border-radius:20px;background:#151c25;top:235px}.leg.l{left:73px;transform:rotate(4deg)}.leg.r{right:73px;transform:rotate(-4deg)}
+.hero-badge{position:absolute;right:5%;bottom:25px;background:#0c1219e8;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:12px;backdrop-filter:blur(12px);box-shadow:0 15px 40px #0008}
+.section-title{font-family:Orbitron;font-size:25px;margin:15px 0 20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:linear-gradient(145deg,#101721dd,#0a0f16dd);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 15px 45px #0005;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;inset:-1px;background:linear-gradient(120deg,transparent,#57f0c012,transparent);transform:translateX(-100%);transition:.7s}.card:hover:before{transform:translateX(100%)}
+.stat{text-align:center}.stat strong{font-family:Orbitron;font-size:32px;color:var(--cyan);display:block}
+.tournament{margin-bottom:14px}.tournament h3{font-family:Orbitron;margin:0 0 10px;font-size:17px}
+.meta{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.pill{font-size:11px;padding:5px 8px;border-radius:99px;background:#fff08;border:1px solid #ffffff12;color:#b9c5d0}
+label{font-size:12px;color:#9eacb8}input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ffffff12;background:#080d13;color:#fff;margin:6px 0 12px;outline:none}input:focus,select:focus{border-color:#57f0c066;box-shadow:0 0 0 3px #57f0c00b}
+.notice{padding:12px 14px;background:#ffffff06;border:1px solid #ffffff0e;border-radius:10px;color:#aeb8c5;font-size:12px;line-height:1.6}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px;border-bottom:1px solid #ffffff0b}th{color:var(--cyan)}
+.hidden{display:none!important}.muted{color:var(--muted)}.success{color:var(--cyan)}.error{color:#ff7187}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal.show{display:flex}.modalbox{max-width:480px;width:100%;background:#0d141c;border:1px solid #ffffff18;border-radius:16px;padding:20px;box-shadow:0 25px 80px #000}
+footer{text-align:center;color:#647180;font-size:11px;padding:35px 10px}
+@media(max-width:850px){.hero{grid-template-columns:1fr;min-height:auto;padding:45px 0}.visual{height:350px}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.nav{align-items:flex-start}.brand b{font-size:13px}nav{margin-top:8px}.hero h1{font-size:38px}.grid{grid-template-columns:1fr}.ring{width:280px;height:280px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">🏆 FF TOURNAMENT HUB</div>
-  <div class="sub">Free Fire Tournament Platform</div>
-</header>
-
-<nav>
-  <button onclick="showPage('home')">Home</button>
-  <button onclick="showPage('login')">Player Login</button>
-  <button onclick="showPage('tournaments')">Tournaments</button>
-  <button onclick="showPage('mygames')">My Games</button>
-  <button onclick="showPage('leaderboard')">Leaderboard</button>
-  <button onclick="showPage('results')">Results</button>
-  <button onclick="showPage('admin')">Admin</button>
-</nav>
+<div id="particles"></div>
+<header><div class="nav">
+<a class="brand" href="#" onclick="showPage('home');return false"><span class="brand-mark">🏆</span><span><b>FF TOURNAMENT HUB</b><small>COMPETE • WIN • DOMINATE</small></span></a>
+<nav id="nav"></nav>
+</div></header>
 
 <main>
 <section id="home" class="page active">
-  <div class="hero">
-    <h1>Welcome to FF Tournament Hub</h1>
-    <p>Join tournaments, compete with players and climb the leaderboard.</p>
-    <button onclick="showPage('tournaments')">View Tournaments</button>
-  </div>
-  <div class="grid">
-    <div class="card stat"><b id="statPlayers">0</b>Players</div>
-    <div class="card stat"><b id="statTournaments">0</b>Tournaments</div>
-    <div class="card stat"><b id="statResults">0</b>Results</div>
-  </div>
-  <div class="notice">Demo version: data is stored in this browser using localStorage. Real multi-user login/database requires a backend.</div>
+<div class="hero">
+<div>
+<span class="kicker">🔥 INDIA'S COMMUNITY BATTLE ARENA</span>
+<h1>YOUR GAME.<br><span class="gradient">YOUR GLORY.</span></h1>
+<p>Join Free Fire tournaments, compete with players, unlock room details and climb the leaderboard. A modern tournament experience built for the gaming community.</p>
+<div class="actions"><button class="btn" onclick="showPage('tournaments')">🏆 Explore Tournaments</button><button class="btn alt" onclick="showPage('login')">👤 Player Login</button></div>
+</div>
+<div class="visual">
+<div class="ring"></div><div class="character"><div class="head"></div><div class="body"></div><div class="arm l"></div><div class="arm r"></div><div class="gun"></div><div class="leg l"></div><div class="leg r"></div></div>
+<div class="hero-badge">⚡ LIVE BATTLE SYSTEM<br><span class="muted">Fast • Competitive • Fair</span></div>
+</div>
+</div>
+<div class="grid">
+<div class="card stat"><strong id="statPlayers">0</strong>Players Registered</div>
+<div class="card stat"><strong id="statTournaments">0</strong>Tournaments</div>
+<div class="card stat"><strong id="statResults">0</strong>Results Published</div>
+</div>
+<div class="card" style="margin-top:15px"><b>⚠️ Prototype notice</b><p class="muted">This version stores demo data in the browser. A real public platform needs secure authentication, a database and a backend.</p></div>
 </section>
 
-<section id="login" class="page">
-  <h2>👤 Player Login / Register</h2>
-  <div id="loginArea" class="grid">
-    <div class="card">
-      <h3>Register</h3>
-      <label>Name</label><input id="regName" placeholder="Your name">
-      <label>Free Fire UID</label><input id="regUid" placeholder="Your UID">
-      <label>Password</label><input id="regPass" type="password" placeholder="Password">
-      <button onclick="registerPlayer()">Create Account</button>
-      <p id="regMsg"></p>
-    </div>
-    <div class="card">
-      <h3>Login</h3>
-      <label>Free Fire UID</label><input id="loginUid" placeholder="Your UID">
-      <label>Password</label><input id="loginPass" type="password" placeholder="Password">
-      <button onclick="loginPlayer()">Login</button>
-      <p id="loginMsg"></p>
-    </div>
-  </div>
-  <div id="userBox" class="card" style="display:none"></div>
-</section>
+<section id="login" class="page"><h2 class="section-title">👤 Player Account</h2><div id="loginArea" class="grid">
+<div class="card"><h3>Create Player Account</h3><label>Player Name</label><input id="regName" placeholder="e.g. Sargam Gamer"><label>Free Fire UID</label><input id="regUid" placeholder="Your UID"><label>Password</label><input id="regPass" type="password" placeholder="Create password"><button class="btn" onclick="registerPlayer()">Register</button><p id="regMsg"></p></div>
+<div class="card"><h3>Welcome Back</h3><label>Free Fire UID</label><input id="loginUid" placeholder="Your UID"><label>Password</label><input id="loginPass" type="password" placeholder="Password"><button class="btn" onclick="loginPlayer()">Login</button><p id="loginMsg"></p></div>
+</div><div id="userBox" class="card hidden"></div></section>
 
-<section id="tournaments" class="page">
-  <div class="topline"><h2>🏆 Tournaments</h2><span class="badge">Open tournaments</span></div>
-  <div id="tournamentList"></div>
-</section>
-
-<section id="mygames" class="page">
-  <h2>🎮 My Games</h2>
-  <div id="myGamesList"></div>
-</section>
-
-<section id="leaderboard" class="page">
-  <h2>🥇 Leaderboard</h2>
-  <div id="leaderboardList"></div>
-</section>
-
-<section id="results" class="page">
-  <h2>📜 Result History</h2>
-  <div id="resultsList"></div>
-</section>
-
-<section id="admin" class="page">
-  <h2>🔐 Admin Panel</h2>
-  <div id="adminLoginBox" class="card">
-    <p class="muted">Demo admin login. Change/remove this before using a real public system.</p>
-    <label>Admin username</label><input id="adminUser" placeholder="admin">
-    <label>Admin password</label><input id="adminPass" type="password" placeholder="admin123">
-    <button onclick="adminLogin()">Admin Login</button>
-    <p id="adminMsg"></p>
-  </div>
-  <div id="adminPanel" style="display:none">
-    <div class="card">
-      <h3>➕ Create Tournament</h3>
-      <input id="tName" placeholder="Tournament name">
-      <input id="tDate" type="datetime-local">
-      <input id="tMap" placeholder="Map e.g. Bermuda">
-      <input id="tSlots" type="number" placeholder="Slots e.g. 48">
-      <input id="tRoom" placeholder="Room ID">
-      <input id="tPassword" placeholder="Room Password">
-      <input id="tPrize" placeholder="Prize e.g. ₹500">
-      <button onclick="createTournament()">Create Tournament</button>
-    </div>
-    <div class="card">
-      <h3>📊 Publish Result</h3>
-      <select id="resultTournament"></select>
-      <input id="resultUid" placeholder="Player UID">
-      <input id="resultKills" type="number" placeholder="Kills">
-      <input id="resultPoints" type="number" placeholder="Placement points">
-      <button onclick="publishResult()">Publish Result</button>
-      <p class="small muted">Duplicate results for the same player+tournament are blocked.</p>
-    </div>
-    <div class="card">
-      <h3>⚙️ Admin Tournament List</h3>
-      <div id="adminTournamentList"></div>
-    </div>
-    <button class="danger" onclick="adminLogout()">Admin Logout</button>
-  </div>
+<section id="tournaments" class="page"><div class="actions" style="justify-content:space-between"><h2 class="section-title">🏆 Battle Tournaments</h2><span class="kicker">OPEN FOR JOINING</span></div><div id="tournamentList"></div></section>
+<section id="mygames" class="page"><h2 class="section-title">🎮 My Games</h2><div id="myGamesList"></div></section>
+<section id="leaderboard" class="page"><h2 class="section-title">🥇 Global Leaderboard</h2><div class="card" id="leaderboardList"></div></section>
+<section id="results" class="page"><h2 class="section-title">📜 Match Results</h2><div class="card" id="resultsList"></div></section>
+<section id="admin" class="page"><h2 class="section-title">🔐 Tournament Control</h2>
+<div id="adminLoginBox" class="card"><p class="muted">Demo admin: change the credentials before any real public launch.</p><label>Username</label><input id="adminUser" placeholder="admin"><label>Password</label><input id="adminPass" type="password" placeholder="admin123"><button class="btn" onclick="adminLogin()">Enter Admin Panel</button><p id="adminMsg"></p></div>
+<div id="adminPanel" class="hidden"><div class="grid">
+<div class="card"><h3>➕ Create Tournament</h3><input id="tName" placeholder="Tournament name"><input id="tDate" type="datetime-local"><input id="tMap" placeholder="Map"><input id="tSlots" type="number" placeholder="Slots"><input id="tRoom" placeholder="Room ID"><input id="tPassword" placeholder="Room Password"><input id="tPrize" placeholder="Prize"><button class="btn" onclick="createTournament()">Create Tournament</button></div>
+<div class="card"><h3>📊 Publish Result</h3><select id="resultTournament"></select><input id="resultUid" placeholder="Player UID"><input id="resultKills" type="number" placeholder="Kills"><input id="resultPoints" type="number" placeholder="Placement points"><button class="btn" onclick="publishResult()">Publish Result</button></div>
+</div><div class="card" style="margin-top:14px"><h3>Current Tournaments</h3><div id="adminTournamentList"></div></div><button class="btn red" onclick="adminLogout()">Admin Logout</button></div>
 </section>
 </main>
-
+<footer>FF TOURNAMENT HUB • Community gaming prototype • Not affiliated with Garena</footer>
 <div id="modal" class="modal"><div class="modalbox" id="modalContent"></div></div>
 
 <script>
-const KEY='ffth_data_v1';
+const KEY='ffth_pro_v2';
 let data=JSON.parse(localStorage.getItem(KEY)||'null');
-if(!data){
-  data={
-    players:[],
-    tournaments:[{
-      id:'T1',name:'FFTH Opening Cup',date:'2026-10-05T20:00',
-      map:'Bermuda',slots:48,joined:0,room:'ROOM-DEMO',password:'1234',
-      prize:'₹500',status:'Open'
-    }],
-    joins:[],results:[]
-  };
-  save();
-}
-let currentUid=localStorage.getItem('ffth_current_uid')||'';
-let admin=false;
+if(!data){data={players:[],tournaments:[{id:'T1',name:'FFTH Opening Cup',date:'2026-10-05T20:00',map:'Bermuda',slots:48,room:'ROOM-DEMO',password:'1234',prize:'₹500',status:'Open'}],joins:[],results:[]};save()}
+let currentUid=localStorage.getItem('ffth_current_uid')||'',admin=false;
 
-function save(){localStorage.setItem(KEY,JSON.stringify(data));}
-function showPage(id){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  renderAll();
-}
-function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-function currentPlayer(){return data.players.find(p=>p.uid===currentUid);}
-function registerPlayer(){
-  const name=document.getElementById('regName').value.trim(),uid=document.getElementById('regUid').value.trim(),pass=document.getElementById('regPass').value;
-  const m=document.getElementById('regMsg');
-  if(!name||!uid||!pass){m.className='error';m.textContent='Please fill all fields.';return;}
-  if(data.players.some(p=>p.uid===uid)){m.className='error';m.textContent='UID already registered.';return;}
-  data.players.push({name,uid,password:pass});
-  save(); m.className='success';m.textContent='Account created. You can login now.';
-  document.getElementById('regName').value='';document.getElementById('regUid').value='';document.getElementById('regPass').value='';
-  renderAll();
-}
-function loginPlayer(){
-  const uid=document.getElementById('loginUid').value.trim(),pass=document.getElementById('loginPass').value,m=document.getElementById('loginMsg');
-  const p=data.players.find(x=>x.uid===uid&&x.password===pass);
-  if(!p){m.className='error';m.textContent='Invalid UID or password.';return;}
-  currentUid=uid;localStorage.setItem('ffth_current_uid',uid);m.className='success';m.textContent='Login successful!';
-  renderAll();
-}
-function logoutPlayer(){currentUid='';localStorage.removeItem('ffth_current_uid');renderAll();}
-function joinTournament(id){
-  const p=currentPlayer();const t=data.tournaments.find(x=>x.id===id);
-  if(!p){showPage('login');alert('Please login first.');return;}
-  if(!t||t.status!=='Open'){alert('Tournament is not open.');return;}
-  if(data.joins.some(j=>j.uid===p.uid&&j.tid===id)){alert('You already joined this tournament.');return;}
-  const count=data.joins.filter(j=>j.tid===id).length;
-  if(count>=Number(t.slots)){alert('Tournament is full.');return;}
-  data.joins.push({uid:p.uid,tid:id,joinedAt:new Date().toISOString()});
-  save();alert('Tournament joined successfully!');renderAll();
-}
-function leaveTournament(id){
-  data.joins=data.joins.filter(j=>!(j.uid===currentUid&&j.tid===id));save();renderAll();
-}
-function showRoom(id){
-  const t=data.tournaments.find(x=>x.id===id);
-  document.getElementById('modalContent').innerHTML='<h3>🔑 Room Details</h3><p><b>Room ID:</b> '+esc(t.room)+'</p><p><b>Password:</b> '+esc(t.password)+'</p><button onclick="closeModal()">Close</button>';
-  document.getElementById('modal').classList.add('show');
-}
-function closeModal(){document.getElementById('modal').classList.remove('show');}
-function adminLogin(){
-  const u=document.getElementById('adminUser').value,p=document.getElementById('adminPass').value,m=document.getElementById('adminMsg');
-  if(u==='admin'&&p==='admin123'){admin=true;m.className='success';m.textContent='Admin login successful.';renderAll();}
-  else{m.className='error';m.textContent='Invalid admin login.';}
-}
-function adminLogout(){admin=false;renderAll();}
-function createTournament(){
-  if(!admin)return;
-  const name=document.getElementById('tName').value.trim(),date=document.getElementById('tDate').value,map=document.getElementById('tMap').value.trim(),slots=Number(document.getElementById('tSlots').value),room=document.getElementById('tRoom').value.trim(),password=document.getElementById('tPassword').value.trim(),prize=document.getElementById('tPrize').value.trim();
-  if(!name||!date||!slots){alert('Tournament name, date and slots are required.');return;}
-  data.tournaments.push({id:'T'+Date.now(),name,date,map:map||'Bermuda',slots,joined:0,room:room||'Not published',password:password||'Not published',prize:prize||'TBA',status:'Open'});
-  save();alert('Tournament created.');renderAll();
-}
-function publishResult(){
-  if(!admin)return;
-  const tid=document.getElementById('resultTournament').value,uid=document.getElementById('resultUid').value.trim(),kills=Number(document.getElementById('resultKills').value||0),points=Number(document.getElementById('resultPoints').value||0);
-  if(!tid||!uid){alert('Select tournament and enter player UID.');return;}
-  if(!data.players.some(p=>p.uid===uid)){alert('Player UID not found.');return;}
-  if(data.results.some(r=>r.tid===tid&&r.uid===uid)){alert('Duplicate result blocked for this player and tournament.');return;}
-  data.results.push({id:'R'+Date.now(),tid,uid,kills,points,total:points+kills,createdAt:new Date().toISOString()});
-  save();alert('Result published and leaderboard updated.');renderAll();
-}
-function renderHome(){
-  document.getElementById('statPlayers').textContent=data.players.length;
-  document.getElementById('statTournaments').textContent=data.tournaments.length;
-  document.getElementById('statResults').textContent=data.results.length;
-}
-function renderLogin(){
-  const box=document.getElementById('userBox'),area=document.getElementById('loginArea'),p=currentPlayer();
-  if(p){area.style.display='none';box.style.display='block';box.innerHTML='<div class="topline"><div><h3>Welcome, '+esc(p.name)+' 👋</h3><p class="muted">UID: '+esc(p.uid)+'</p></div><button class="secondary" onclick="logoutPlayer()">Logout</button></div>';}
-  else{area.style.display='grid';box.style.display='none';}
-}
-function renderTournaments(){
-  const el=document.getElementById('tournamentList');
-  if(!data.tournaments.length){el.innerHTML='<div class="card">No tournaments yet.</div>';return;}
-  el.innerHTML=data.tournaments.map(t=>{
-    const joined=data.joins.some(j=>j.uid===currentUid&&j.tid===t.id),count=data.joins.filter(j=>j.tid===t.id).length;
-    return '<div class="card"><div class="topline"><h3>🏆 '+esc(t.name)+'</h3><span class="badge">'+esc(t.status)+'</span></div><p>📅 '+esc(t.date)+'</p><p>🗺️ Map: '+esc(t.map)+' · 🎟️ Slots: '+count+'/'+esc(t.slots)+'</p><p>💰 Prize: '+esc(t.prize)+'</p><div class="actions">'+
-      (joined?'<button class="secondary" onclick="showRoom(\''+t.id+'\')">🔑 Room Details</button><button class="danger" onclick="leaveTournament(\''+t.id+'\')">Leave</button>':'<button '+(count>=Number(t.slots)?'disabled':'')+' onclick="joinTournament(\''+t.id+'\')">Join Tournament</button>')+
-      '</div></div>';
-  }).join('');
-}
-function renderMyGames(){
-  const el=document.getElementById('myGamesList');
-  if(!currentPlayer()){el.innerHTML='<div class="card">Please login to see your games.</div>';return;}
-  const mine=data.joins.filter(j=>j.uid===currentUid);
-  if(!mine.length){el.innerHTML='<div class="card">You have not joined any tournament yet.</div>';return;}
-  el.innerHTML=mine.map(j=>{const t=data.tournaments.find(x=>x.id===j.tid);const r=data.results.find(x=>x.uid===currentUid&&x.tid===j.tid);return '<div class="card"><h3>'+esc(t?.name||'Tournament')+'</h3><p>Status: <span class="badge">'+(r?'Result Published':'Joined')+'</span></p>'+(r?'<p>🏅 Kills: '+r.kills+' · Points: '+r.points+' · Total: '+r.total+'</p>':'<button onclick="showRoom(\''+j.tid+'\')">Room Details</button>')+'</div>';}).join('');
-}
-function renderLeaderboard(){
-  const totals={};
-  data.results.forEach(r=>{totals[r.uid]=(totals[r.uid]||0)+Number(r.total||0);});
-  const rows=Object.entries(totals).sort((a,b)=>b[1]-a[1]).map(([uid,total],i)=>{const p=data.players.find(x=>x.uid===uid);return '<tr><td>'+(i+1)+'</td><td>'+esc(p?.name||uid)+'</td><td>'+esc(uid)+'</td><td>'+total+'</td></tr>';}).join('');
-  document.getElementById('leaderboardList').innerHTML=rows?'<div class="card"><table><tr><th>Rank</th><th>Player</th><th>UID</th><th>Total Points</th></tr>'+rows+'</table></div>':'<div class="card">No published results yet.</div>';
-}
-function renderResults(){
-  const rows=data.results.slice().reverse().map(r=>{const p=data.players.find(x=>x.uid===r.uid),t=data.tournaments.find(x=>x.id===r.tid);return '<tr><td>'+esc(t?.name||r.tid)+'</td><td>'+esc(p?.name||r.uid)+'</td><td>'+r.kills+'</td><td>'+r.points+'</td><td>'+r.total+'</td></tr>';}).join('');
-  document.getElementById('resultsList').innerHTML=rows?'<div class="card"><table><tr><th>Tournament</th><th>Player</th><th>Kills</th><th>Placement</th><th>Total</th></tr>'+rows+'</table></div>':'<div class="card">No results published yet.</div>';
-}
-function renderAdmin(){
-  document.getElementById('adminLoginBox').style.display=admin?'none':'block';
-  document.getElementById('adminPanel').style.display=admin?'block':'none';
-  if(!admin)return;
-  document.getElementById('resultTournament').innerHTML=data.tournaments.map(t=>'<option value="'+t.id+'">'+esc(t.name)+'</option>').join('');
-  document.getElementById('adminTournamentList').innerHTML=data.tournaments.map(t=>'<p><b>'+esc(t.name)+'</b> — '+data.joins.filter(j=>j.tid===t.id).length+'/'+t.slots+' joined</p>').join('');
-}
-function renderAll(){renderHome();renderLogin();renderTournaments();renderMyGames();renderLeaderboard();renderResults();renderAdmin();}
-renderAll();
+const navItems=[['home','Home'],['login','Player Login'],['tournaments','Tournaments'],['mygames','My Games'],['leaderboard','Leaderboard'],['results','Results'],['admin','Admin']];
+document.getElementById('nav').innerHTML=navItems.map(x=>`<button id="nav-${x[0]}" onclick="showPage('${x[0]}')">${x[1]}</button>`).join('');
+for(let i=0;i<22;i++){let p=document.createElement('i');p.className='p';p.style.left=Math.random()*100+'%';p.style.animationDuration=(5+Math.random()*9)+'s';p.style.animationDelay=(-Math.random()*10)+'s';document.getElementById('particles').appendChild(p)}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');navItems.forEach(x=>document.getElementById('nav-'+x[0]).classList.toggle('active',x[0]===id));renderAll();window.scrollTo({top:0,behavior:'smooth'})}
+function currentPlayer(){return data.players.find(p=>p.uid===currentUid)}
+function registerPlayer(){let n=regName.value.trim(),u=regUid.value.trim(),p=regPass.value,m=regMsg;if(!n||!u||!p){m.className='error';m.textContent='Fill all fields.';return}if(data.players.some(x=>x.uid===u)){m.className='error';m.textContent='UID already registered.';return}data.players.push({name:n,uid:u,password:p});save();m.className='success';m.textContent='Account created. Login now.'}
+function loginPlayer(){let u=loginUid.value.trim(),p=loginPass.value,m=loginMsg,x=data.players.find(a=>a.uid===u&&a.password===p);if(!x){m.className='error';m.textContent='Invalid UID or password.';return}currentUid=u;localStorage.setItem('ffth_current_uid',u);m.className='success';m.textContent='Login successful!';renderAll()}
+function logoutPlayer(){currentUid='';localStorage.removeItem('ffth_current_uid');renderAll()}
+function joinTournament(id){let p=currentPlayer(),t=data.tournaments.find(x=>x.id===id);if(!p){showPage('login');return alert('Please login first.')}if(data.joins.some(j=>j.uid===p.uid&&j.tid===id))return alert('Already joined.');let c=data.joins.filter(j=>j.tid===id).length;if(c>=t.slots)return alert('Tournament full.');data.joins.push({uid:p.uid,tid:id});save();alert('Joined successfully!');renderAll()}
+function room(id){let t=data.tournaments.find(x=>x.id===id);modalContent.innerHTML=`<h3>🔑 Room Details</h3><p><b>Room ID:</b> ${esc(t.room)}</p><p><b>Password:</b> ${esc(t.password)}</p><button class="btn" onclick="closeModal()">Close</button>`;modal.classList.add('show')}
+function closeModal(){modal.classList.remove('show')}
+function adminLogin(){if(adminUser.value==='admin'&&adminPass.value==='admin123'){admin=true;adminMsg.className='success';adminMsg.textContent='Admin access granted.';renderAll()}else{adminMsg.className='error';adminMsg.textContent='Invalid admin login.'}}
+function adminLogout(){admin=false;renderAll()}
+function createTournament(){let n=tName.value.trim(),d=tDate.value,s=Number(tSlots.value);if(!n||!d||!s)return alert('Name, date and slots required.');data.tournaments.push({id:'T'+Date.now(),name:n,date:d,map:tMap.value.trim()||'Bermuda',slots:s,room:tRoom.value.trim()||'Not published',password:tPassword.value.trim()||'Not published',prize:tPrize.value.trim()||'TBA',status:'Open'});save();alert('Tournament created!');renderAll()}
+function publishResult(){let tid=resultTournament.value,u=resultUid.value.trim(),k=Number(resultKills.value||0),p=Number(resultPoints.value||0);if(!u)return alert('Enter player UID.');if(!data.players.some(x=>x.uid===u))return alert('Player UID not found.');if(data.results.some(x=>x.tid===tid&&x.uid===u))return alert('Duplicate result blocked.');data.results.push({tid,uid:u,kills:k,points:p,total:k+p});save();alert('Result published!');renderAll()}
+function renderAll(){statPlayers.textContent=data.players.length;statTournaments.textContent=data.tournaments.length;statResults.textContent=data.results.length;renderLogin();renderTournaments();renderMyGames();renderLeaderboard();renderResults();renderAdmin()}
+function renderLogin(){let p=currentPlayer();loginArea.classList.toggle('hidden',!!p);userBox.classList.toggle('hidden',!p);if(p)userBox.innerHTML=`<div class="actions" style="justify-content:space-between"><div><h3>Welcome, ${esc(p.name)} 👋</h3><p class="muted">Free Fire UID: ${esc(p.uid)}</p></div><button class="btn alt" onclick="logoutPlayer()">Logout</button></div>`}
+function renderTournaments(){tournamentList.innerHTML=data.tournaments.map(t=>{let c=data.joins.filter(j=>j.tid===t.id).length,j=data.joins.some(x=>x.tid===t.id&&x.uid===currentUid);return `<div class="card tournament"><div class="actions" style="justify-content:space-between"><h3>🏆 ${esc(t.name)}</h3><span class="kicker">${esc(t.status)}</span></div><div class="meta"><span class="pill">📅 ${esc(t.date)}</span><span class="pill">🗺️ ${esc(t.map)}</span><span class="pill">🎟️ ${c}/${t.slots}</span><span class="pill">💰 ${esc(t.prize)}</span></div>${j?`<button class="btn gold" onclick="room('${t.id}')">🔑 Room Details</button>`:`<button class="btn" ${c>=t.slots?'disabled':''} onclick="joinTournament('${t.id}')">Join Tournament</button>`}</div>`}).join('')}
+function renderMyGames(){if(!currentPlayer()){myGamesList.innerHTML='<div class="card">Login to see your joined games.</div>';return}let a=data.joins.filter(j=>j.uid===currentUid);myGamesList.innerHTML=a.length?a.map(j=>{let t=data.tournaments.find(x=>x.id===j.tid);return `<div class="card"><h3>${esc(t.name)}</h3><p class="muted">You are registered for this battle.</p><button class="btn gold" onclick="room('${j.tid}')">🔑 Room Details</button></div>`}).join(''):'<div class="card">No joined tournaments yet.</div>'}
+function renderLeaderboard(){let map={};data.results.forEach(r=>map[r.uid]=(map[r.uid]||0)+r.total);let a=Object.entries(map).sort((x,y)=>y[1]-x[1]);leaderboardList.innerHTML=a.length?'<table><tr><th>#</th><th>Player</th><th>UID</th><th>Points</th></tr>'+a.map((x,i)=>{let p=data.players.find(z=>z.uid===x[0]);return `<tr><td>${i+1}</td><td>${esc(p?.name||x[0])}</td><td>${esc(x[0])}</td><td>${x[1]}</td></tr>`}).join('')+'</table>':'<p class="muted">No results yet.</p>'}
+function renderResults(){let a=[...data.results].reverse();resultsList.innerHTML=a.length?'<table><tr><th>Tournament</th><th>Player</th><th>Kills</th><th>Points</th><th>Total</th></tr>'+a.map(r=>{let p=data.players.find(x=>x.uid===r.uid),t=data.tournaments.find(x=>x.id===r.tid);return `<tr><td>${esc(t?.name||r.tid)}</td><td>${esc(p?.name||r.uid)}</td><td>${r.kills}</td><td>${r.points}</td><td>${r.total}</td></tr>`}).join('')+'</table>':'<p class="muted">No published results.</p>'}
+function renderAdmin(){adminLoginBox.classList.toggle('hidden',admin);adminPanel.classList.toggle('hidden',!admin);if(admin){resultTournament.innerHTML=data.tournaments.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');adminTournamentList.innerHTML=data.tournaments.map(t=>`<p>🏆 <b>${esc(t.name)}</b> — ${data.joins.filter(j=>j.tid===t.id).length}/${t.slots} joined</p>`).join('')}}
+renderAll();showPage('home');
 </script>
 </body>
 </html>
