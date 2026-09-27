@@ -250,7 +250,7 @@ function renderTournaments(){
   el.innerHTML=data.tournaments.map(t=>{
     const joined=data.joins.some(j=>j.uid===currentUid&&j.tid===t.id),count=data.joins.filter(j=>j.tid===t.id).length;
     return '<div class="card"><div class="topline"><h3>🏆 '+esc(t.name)+'</h3><span class="badge">'+esc(t.status)+'</span></div><p>📅 '+esc(t.date)+'</p><p>🗺️ Map: '+esc(t.map)+' · 🎟️ Slots: '+count+'/'+esc(t.slots)+'</p><p>💰 Prize: '+esc(t.prize)+'</p><div class="actions">'+
-      (joined?'<button class="secondary" onclick="showRoom(\\''+t.id+'\\')">🔑 Room Details</button><button class="danger" onclick="leaveTournament(\\''+t.id+'\\')">Leave</button>':'<button '+(count>=Number(t.slots)?'disabled':'')+' onclick="joinTournament(\\''+t.id+'\\')">Join Tournament</button>')+
+      (joined?'<button class="secondary" onclick="showRoom(\''+t.id+'\')">🔑 Room Details</button><button class="danger" onclick="leaveTournament(\''+t.id+'\')">Leave</button>':'<button '+(count>=Number(t.slots)?'disabled':'')+' onclick="joinTournament(\''+t.id+'\')">Join Tournament</button>')+
       '</div></div>';
   }).join('');
 }
@@ -259,7 +259,7 @@ function renderMyGames(){
   if(!currentPlayer()){el.innerHTML='<div class="card">Please login to see your games.</div>';return;}
   const mine=data.joins.filter(j=>j.uid===currentUid);
   if(!mine.length){el.innerHTML='<div class="card">You have not joined any tournament yet.</div>';return;}
-  el.innerHTML=mine.map(j=>{const t=data.tournaments.find(x=>x.id===j.tid);const r=data.results.find(x=>x.uid===currentUid&&x.tid===j.tid);return '<div class="card"><h3>'+esc(t?.name||'Tournament')+'</h3><p>Status: <span class="badge">'+(r?'Result Published':'Joined')+'</span></p>'+(r?'<p>🏅 Kills: '+r.kills+' · Points: '+r.points+' · Total: '+r.total+'</p>':'<button onclick="showRoom(\\''+j.tid+'\\')">Room Details</button>')+'</div>';}).join('');
+  el.innerHTML=mine.map(j=>{const t=data.tournaments.find(x=>x.id===j.tid);const r=data.results.find(x=>x.uid===currentUid&&x.tid===j.tid);return '<div class="card"><h3>'+esc(t?.name||'Tournament')+'</h3><p>Status: <span class="badge">'+(r?'Result Published':'Joined')+'</span></p>'+(r?'<p>🏅 Kills: '+r.kills+' · Points: '+r.points+' · Total: '+r.total+'</p>':'<button onclick="showRoom(\''+j.tid+'\')">Room Details</button>')+'</div>';}).join('');
 }
 function renderLeaderboard(){
   const totals={};
